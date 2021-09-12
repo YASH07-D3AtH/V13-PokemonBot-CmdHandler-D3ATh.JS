@@ -44,8 +44,9 @@ module.exports = async (client) => { // Commands
         arrayOfSlashCommands.push(file);
     });
     client.on("ready", async () => { // Register for a single guild
-        await client.guilds.cache.get("861845860571676672").commands.set(arrayOfSlashCommands);
-
+        await client.guilds.cache.get("GUILD ID HERE").commands.set(arrayOfSlashCommands);
+        
+        // Register for all guilds ( might take around 1 hour )
         // await client.application.commands.set(arrayOfSlashCommands);
     });
 }; 
