@@ -118,7 +118,7 @@ client.on("messageCreate", async (message) => {
 
     if (message.author.bot || !message.guild) return;
     if (message.content.toLowerCase() == `<@!${client.user.id}>` || message.content.toLowerCase() == `<@${client.user.id}>`) return message.channel.send({ embeds: [embed] })
-    if (message.content.toLowerCase().startsWith(prefix)) return
+    if (!message.content.toLowerCase().startsWith(prefix)) return
 
     if (message.content.toLowerCase().startsWith(guild.prefix.toLowerCase()) && guild.blacklist == true) return message.channel.send({ content: "This server has been blacklisted. Join support server to appeal." });
     if (user && user.blacklist == true && message.content.toLowerCase().startsWith(guild.prefix)) return message.channel.send({ content: "You have been **Blacklisted**. Join support server to appeal!\nhttps://discord.gg/rjuEhWpk" })
@@ -128,7 +128,7 @@ client.on("messageCreate", async (message) => {
         .trim()
         .split(" ");
 
-    const command = client.commands.get(cmd.toLowerCase()) || client.commands.get(client.aliases.get(cmd.toLowerCase()))
+    const command = client.commands.get(cmd.toLowerCase()) 
     if (!command) return;
     await command.run(client, message, args, prefix, guild, color, channel).catch(err => {
         if ([`versionerror`, `no matching document`, `missing permissions`].includes(err.message.toLowerCase())) return;
