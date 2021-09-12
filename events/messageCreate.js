@@ -4,7 +4,6 @@ let Guild = require('../models/guild.js');
 let User = require("../models/user.js");
 let msgamount = 0
 const { get } = require('request-promise-native')
-const fs = require("fs");
 const { classToPlain } = require("class-transformer");
 const Pokemon = require("./../Classes/Pokemon");
 let Spawn = require("../models/spawn.js");
@@ -33,8 +32,7 @@ client.on("messageCreate", async (message) => {
         if (guild.disabledChannels.includes(message.channel.id)) return
         if (guild.spawnchannel !== null) channel = client.channels.cache.get(guild.spawnchannel)
         if (channel == undefined || channel == null) channel = message.channel
-        // if (message.channel.id !== channel) return
-
+        
         let spawn = await Spawn.findOne({ id: channel.id });
         if (!spawn) await new Spawn({ id: channel.id }).save();
         spawn = await Spawn.findOne({ id: channel.id })
