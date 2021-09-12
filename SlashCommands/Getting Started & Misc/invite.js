@@ -6,12 +6,12 @@ module.exports = {
     name: "invite",
     description: "Returns Bot's Invite Link.",
 
-    run: async (client, interaction, args) => {
+    run: async (client, interaction, args, color, prefix) => {
         
         let embed = new Discord.MessageEmbed()
         .setAuthor(`${client.user.username} - Invite`)
         .setDescription(`**Invite The Bot**\n[Click Here](https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=2148002881&scope=bot).\n**Support Server**\n[Click Here](https://discord.gg/STNCKPeAUk).`)
-        .setColor('RANDOM')
+        .setColor(color)
         .setThumbnail(client.user.displayAvatarURL())
 
         const row = new MessageActionRow()
