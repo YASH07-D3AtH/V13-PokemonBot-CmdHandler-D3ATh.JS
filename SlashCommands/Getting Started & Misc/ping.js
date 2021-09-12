@@ -4,11 +4,11 @@ module.exports = {
     name: "ping",
     description: "Returns bot's ping",
 
-    run: async (client, interaction, args, message) => {
+    run: async (client, interaction, args, color, prefix) => {
         let circles = {
-            green: "<a:greenfire:865919100991045653>",
-            yellow: "<a:yellowflame:865994340442832906> ",
-            red: "<a:warning:865919101300768779>"
+            green: "🟢",
+            yellow: "🟡",
+            red: "🔴"
         }
         let days = Math.floor(client.uptime / 86400000);
         let hours = Math.floor(client.uptime / 3600000) % 24;
@@ -19,8 +19,7 @@ module.exports = {
         let apiLatency = client.ws.ping;
 
         const pingEmbed = new MessageEmbed()
-            .setColor("RANDOM")
-            // .setDescription(`Bot Latency: **${botLatency}ms**\nAPI Latency: **${apiLatency}ms**\nUptime: **${days}d ${hours}h ${minutes}m ${seconds}s**`)
+            .setColor(color)
             .addField("Bot Latency",
                 `${botLatency <= 200 ? circles.green : botLatency <= 400 ? circles.yellow : circles.red} ${botLatency}ms`
                 , true
@@ -34,6 +33,6 @@ module.exports = {
                 , true
             )
 
-        interaction.followUp({ embeds: [pingEmbed] });
+        return interaction.followUp({ embeds: [pingEmbed] });
     },
 };
