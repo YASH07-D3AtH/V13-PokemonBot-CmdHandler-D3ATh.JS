@@ -17,7 +17,6 @@ client.on("interactionCreate", async (interaction) => {
     prefix = "/"
     let color = "#FF35B8"
 
-    // Slash Command Handling
     if (interaction.isCommand()) {
         await interaction.deferReply({ ephemeral: false }).catch((error) => {
             return interaction.followUp({ content: error.stack })
@@ -39,10 +38,13 @@ client.on("interactionCreate", async (interaction) => {
             } else if (option.value) args.push(option.value);
         }
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
+        
+        if (cmd.permission) {
 
-        // const permission = interaction.member.permissions.has(cmd.permission);
-
-        // if (!permission) return interaction.followUp({content: "You Do Not Have Permission" });
+        const permission = interaction.member.permissions.has(cmd.permission)
+        if (!permission) return interaction.followUp({content: "You Do Not Have Permission" })
+            
+        }
 
         if (cmd.cooldown) {
             const current_time = Date.now();
