@@ -5,19 +5,11 @@ module.exports = {
     description: 'Return Bot\'s Latencies.',
     aliases: [],
     cooldown : 5,
-    /**
-     *
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
-     * 
-     */
-
     run: async (client, message, args, prefix, guild, color, channel) => {
         let circles = {
             green: "🟢",
             yellow: "🟡",
-            red: "<:red:863981694057840640>"
+            red: "🔴"
         }
         let days = Math.floor(client.uptime / 86400000)
         let hours = Math.floor(client.uptime / 3600000) % 24
