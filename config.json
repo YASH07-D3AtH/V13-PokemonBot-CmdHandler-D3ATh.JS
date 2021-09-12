@@ -1,7 +1,8 @@
 {
-    "token": "ODc5NTc0NzMzODE1OTU5NjEy.YSRtzg.ESZfx-K28HRRCyNo8QgMLCxuzyY",
-    "prefix": "l!",
+    "token": "YOUR BOT TOKEN HERE",
+    "prefix": "p!",
     "owners": [
-        "835771316303822898"  
+        "ID1",
+        "ID2"
     ]
 }
