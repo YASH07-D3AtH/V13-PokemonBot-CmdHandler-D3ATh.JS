@@ -29,7 +29,6 @@ client.on("messageCreate", async (message) => {
 
         msgamount = 0
         if (guild.spawnbtn == false) return
-        if (guild.disabledChannels.includes(message.channel.id)) return
         if (guild.spawnchannel !== null) channel = client.channels.cache.get(guild.spawnchannel)
         if (channel == undefined || channel == null) channel = message.channel
         
